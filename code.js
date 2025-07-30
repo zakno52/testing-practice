@@ -35,10 +35,37 @@ export function caesarCipher(str, num) {
   }
 
   for (let index = 0; index < str.length; index++) {
-    let indexOfTarget = letters.indexOf(str[index]);
+    if (!alphabet.includes(str[index].toLowerCase())) {
+      results.push(str[index]);
+      continue;
+    }
+    let indexOfTarget = letters.indexOf(str[index].toLowerCase());
+    if (!indexOfTarget) {
+      break;
+    }
     let newLetter = letters[parseInt(indexOfTarget) + num];
-    results.push(newLetter);
+    if (str[index] === str[index].toLowerCase()) {
+      results.push(newLetter);
+    } else {
+      results.push(newLetter.toUpperCase());
+    }
   }
 
   return results.join('');
+}
+
+export function analyzeArray(arr) {
+  let min = Math.min(...arr);
+  let max = Math.max(...arr);
+  let average = Math.floor(max / 2);
+  let length = arr.length;
+
+  let results = {
+    average: average,
+    min: min,
+    max: max,
+    length: length,
+  };
+
+  return results;
 }

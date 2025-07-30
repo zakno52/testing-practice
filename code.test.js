@@ -1,4 +1,4 @@
-import { capitalize, reverseString, calculator, caesarCipher } from './code';
+import { capitalize, reverseString, calculator, caesarCipher, analyzeArray } from './code';
 
 describe('capitalize function', () => {
   test('capitalizes the first letter of a lowercase string', () => {
@@ -36,5 +36,17 @@ describe('calculator function', () => {
 describe('caesarCipher function', () => {
   test('simple encryption lowercase', () => {
     expect(caesarCipher('xyz', 3)).toBe('abc');
+  });
+  test('encryption lower and uppercase', () => {
+    expect(caesarCipher('HeLLo', 3)).toBe('KhOOr');
+  });
+  test('Punctuation, spaces, and other non-alphabetical characters', () => {
+    expect(caesarCipher('Hello, World!', 3)).toBe('Khoor, Zruog!');
+  });
+});
+
+describe('analyzeArray function', () => {
+  test('give an array and return obj of average, min, max, and length', () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({ average: 4, min: 1, max: 8, length: 6 });
   });
 });
